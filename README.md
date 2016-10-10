@@ -5,7 +5,7 @@ my python scripts collection
 #### description:
 从[风之动漫](http://www.fzdm.com)上爬漫画，并生成html链接
 #### usage:
-````python
+````bash
 # list all comics with its index
 fzdm.py list
 # find {name} with its index

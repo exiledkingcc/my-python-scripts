@@ -96,6 +96,7 @@ def _get_attr(attrs, att):
     for attr in attrs:
         if attr[0] == att:
             return attr[1]
+    return None
 
 
 _sess = requests.Session()
