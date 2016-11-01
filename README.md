@@ -38,4 +38,18 @@ $ ./fzdm.py build 王者天下
 kill by name, like killall
 
 ### usage:
-cckill.py [-2|-9] name
+`cckill.py [options] name`
+
+### id_db.py
+
+#### description:
+生成身份证前六位与地区对应关系，数据来源：[中华人民共和国民政部](http://www.mca.gov.cn)
+
+`id_links.txt`里面是历年数据。
+
+包含全部新旧数据，不过没有标注时间。
+
+结果存储在`id_code.json, id_name.json, id_relation.json`里面。
+
+#### usage:
+`id_db.py id_links.txt`
