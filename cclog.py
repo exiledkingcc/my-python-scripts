@@ -6,6 +6,13 @@ import logging
 
 FORMAT = "%(asctime)s [%(levelname)s] [%(name)s]: %(message)s"
 
+NOTSET = logging.NOTSET
+DEBUG = logging.DEBUG
+INFO = logging.INFO
+WARNING = logging.WARNING
+ERROR = logging.ERROR
+CRITICAL = logging.CRITICAL
+
 
 class Logger:
     def __init__(self, name=None):
@@ -33,11 +40,11 @@ class Logger:
 
 class Formatter(logging.Formatter):
     COLORS = {
-        logging.DEBUG: "\x1b[37m",
-        logging.INFO: "\x1b[32m",
-        logging.WARNING: "\x1b[33m",
-        logging.ERROR: "\x1b[31m",
-        logging.CRITICAL: "\x1b[35m",
+        DEBUG: "\x1b[37m",
+        INFO: "\x1b[32m",
+        WARNING: "\x1b[33m",
+        ERROR: "\x1b[31m",
+        CRITICAL: "\x1b[35m",
         "default": "\x1b[0m"
     }
 
@@ -54,7 +61,7 @@ class Formatter(logging.Formatter):
 def init(**kwargs):
     stream = kwargs.pop("stream", sys.stderr)
     fmt = kwargs.pop("format", FORMAT)
-    level = kwargs.pop("level", logging.DEBUG)
+    level = kwargs.pop("level", DEBUG)
 
     if len(kwargs) > 0:
         k, _ = kwargs.popitem()
