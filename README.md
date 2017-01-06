@@ -1,6 +1,7 @@
 # my-python-scripts
 my python scripts collection
 
+
 ### fzdm.py
 
 #### description:
@@ -32,6 +33,7 @@ $ ./fzdm.py build 王者天下
 ```
 然后`王者天下`文件夹下会生成`index.html`，可在浏览器中打开看漫画。
 
+
 ### cckill.py
 
 #### description:
@@ -39,6 +41,7 @@ kill by name, like killall
 
 ### usage:
 `cckill.py [options] name`
+
 
 ### id_db.py
 
@@ -53,3 +56,21 @@ kill by name, like killall
 
 #### usage:
 `id_db.py id_links.txt`
+
+
+### cclog.py
+
+#### description:
+输出彩色日志
+
+
+### seek_openwrt.py
+
+#### description:
+获取支持openwrt的设备列表，
+
+然后到jd.com上搜索路由器的价格，链接，评价数，（只取前三个）
+
+结果会写到`openwrt.json`文件中
+
+
