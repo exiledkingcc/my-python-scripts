@@ -74,3 +74,14 @@ kill by name, like killall
 结果会写到`openwrt.json`文件中
 
 
+### subtitle.py
+
+#### description:
+从字幕网站下载美剧字幕，主要避免点来点去的
+
+接受两个参数，剧名与集数
+
+#### usage:
+`./subtitle.py 生活大爆炸第十季 16`
+
+
