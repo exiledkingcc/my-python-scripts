@@ -41,6 +41,7 @@ def init(**kwargs):
     logfile = kwargs.pop("logfile", sys.stderr)
     fmt = kwargs.pop("format", CCLOG_FORMAT)
     level = kwargs.pop("level", DEBUG)
+    disable = kwargs.pop("disable", [])
 
     if len(kwargs) > 0:
         k, _ = kwargs.popitem()
@@ -54,6 +55,8 @@ def init(**kwargs):
     handler.setFormatter(formatter)
     logging.root.addHandler(handler)
     logging.root.setLevel(level)
+    for dis in disable:
+        logging.getLogger(dis).propagate = False
 
 
 if __name__ == '__main__':
