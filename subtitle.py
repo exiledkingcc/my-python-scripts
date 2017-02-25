@@ -75,6 +75,9 @@ class ZimukuPlugin:
         r = Req.get(searchurl, params={"q": name})
         soup = BeautifulSoup(r.text, "lxml")
         div = soup.find("div", attrs={"class": "title"})
+        if not div:
+            log.warning("no result, please try another key word!")
+            return None
         subhref = div.find("a").get("href")
         suburl = self.get_url(subhref)
         log.info("suburl: %s", suburl)
@@ -137,6 +140,8 @@ class ZimukuPlugin:
 
     def search(self, name, episode):
         subs = self.search_name(name)
+        if not subs:
+            return None
         sub = self.get_best_match(subs, episode)
         if not sub:
             return None
