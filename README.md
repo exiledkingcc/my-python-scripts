@@ -85,3 +85,12 @@ kill by name, like killall
 `./subtitle.py 生活大爆炸第十季 16`
 
 
+### flowline.py
+
+#### description:
+一个简单的多线程任务框架。
+
+自定义处理函数，从上游获取数据，处理后丢给下游。
+
+#### usage:
+见文件中示例
