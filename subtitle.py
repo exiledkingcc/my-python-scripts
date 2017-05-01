@@ -38,18 +38,19 @@ class Subtitle:
             log.warning("not found...")
             return
 
-        name, url = sub
+        fname, url = sub
         log.info("downloading... %s", name)
         r = Req.get(url, stream=True)
         if not r.ok:
             log.error("download error: %s", r.status)
         dsize = 0
-        with open(name, "wb") as f:
+        fname = fname.replace("/", "|")
+        with open(fname, "wb") as f:
             for block in r.iter_content(4096):
                 f.write(block)
                 dsize += len(block)
                 log.info("downloaded %d bytes...", dsize)
-        log.info("%s saved!", name)
+        log.info("%s saved!", fname)
 
     @staticmethod
     def plugin(cls):
