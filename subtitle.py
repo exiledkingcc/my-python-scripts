@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
+import os
+import zipfile
+import rarfile
 import logging
 
 from bs4 import BeautifulSoup
@@ -52,6 +55,16 @@ class Subtitle:
                 log.info("downloaded %d bytes...", dsize)
         log.info("%s saved!", fname)
 
+        if Subtitle.is_subtitle_file(fname):
+            log.info("%s no need to uncompress...", fname)
+        elif fname.endswith(".zip"):
+            Subtitle.unzip(fname)
+        elif fname.endswith(".rar"):
+            Subtitle.unrar(fname)
+        else:
+            log.warning("not support now")
+
+
     @staticmethod
     def plugin(cls):
         class Wrapper:
@@ -62,6 +75,34 @@ class Subtitle:
         if Wrapper not in Subtitle.PLUGINS:
             Subtitle.PLUGINS.append(Wrapper)
         return Wrapper
+
+
+    @staticmethod
+    def is_subtitle_file(fname):
+        return bool(fname.endswith(".ass") or fname.endswith(".srt"))
+
+
+    @staticmethod
+    def uncompress(fname, CompressedFile):
+        with CompressedFile(fname) as z:
+            for fname in z.namelist():
+                if not Subtitle.is_subtitle_file(fname):
+                    continue
+                with z.open(fname, "r") as f:
+                    r = f.read()
+                ffname = os.path.basename(fname)
+                with open(ffname, "wb") as f:
+                    f.write(r)
+
+    @staticmethod
+    def unzip(fname):
+        log.info("unzip %s", fname)
+        Subtitle.uncompress(fname, zipfile.ZipFile)
+
+    @staticmethod
+    def unrar(fname):
+        log.info("unrar %s", fname)
+        Subtitle.uncompress(fname, rarfile.RarFile)
 
 
 @Subtitle.plugin
